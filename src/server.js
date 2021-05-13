@@ -46,6 +46,11 @@ const resolvers = {
       }
       todos.push(todo)
       return todo
+    },
+    completeTodo: (parent, {id}) => {
+      // toggles opposite boolean status of completed
+      todos[id].completed = !todos[id].completed
+      return todos[id]
     }
   }
 }

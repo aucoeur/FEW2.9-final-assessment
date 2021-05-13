@@ -53,7 +53,7 @@ Write queries to perform the following operations.
 - [x] List all todos
 - [x] Add a new todo: name: "Complete the final assessment"
 - [x] Show the: "Completed final assessment" todo 
-- Complete the: "Complete final assessment" todo
+- [x] Complete the: "Complete final assessment" todo
 - [x] Show all completed todos
   - STRETCH: Show all not completed todos
 
