@@ -1,8 +1,49 @@
 # FEW 2.9 Final Assessment
 Repo for FEW2.9 GraphQL Final
 
-# GraphQL Queries
+## GraphQL Queries
+### get all todos
+    ```graphql
+    query getAll {
+    getAllTodos {
+        name
+        date
+        id
+        completed
+    }
+    }
+    ```
 
+### Get All Completed Todos
+```graphql
+query getComplete {
+  getCompletedTodos {
+    name
+    date
+    completed
+  }
+}
+```
+
+### Add Todo
+```gql
+mutation addFinalTodo {
+  addTodo(name: "Finish this final", date: "05-23-2021") {
+    name
+    date
+  }
+}
+```
+
+### Toggle completed status
+```gql
+mutation toggleComplete {
+  completeTodo(id: 2) {
+    name
+    completed
+  }
+}
+```
 
 # Assessment Challenges
 ## Question 1 - Setup
