@@ -50,11 +50,11 @@ Write queries to perform the following operations.
 
 **Test these in Graphiql and paste them into a readme in your project folder.** If I launch your project I should be able to test all of your queries. 
 
-- List all todos
-- Add a new todo: name: "Complete the final assessment"
-- Show the: "Completed final assessment" todo 
+- [x] List all todos
+- [x] Add a new todo: name: "Complete the final assessment"
+- [x] Show the: "Completed final assessment" todo 
 - Complete the: "Complete final assessment" todo
-- Show all completed todos
+- [x] Show all completed todos
   - STRETCH: Show all not completed todos
 
 ### Stretch Challenge: Subscriptions

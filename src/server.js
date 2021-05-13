@@ -5,8 +5,14 @@ const path = require('path')
 const todos = [
   {
     name: "A todo item",
-    completed: 0,
+    completed: 1,
     date: new Date("1988-07-10T14:30:00.000Z").toDateString(),
+    id: 1
+  },
+  {
+    name: "An unfinished todo item",
+    completed: 0,
+    date: new Date("2020-01-01T14:30:00.000Z").toDateString(),
     id: 1
   }
 ]
@@ -19,10 +25,14 @@ const resolvers = {
       return todos
     },
     getTodo: ({id}) => {
-      return `Get todo by ID`
+      return todos[id]
     },
-    getCompletedTodos: ({completed}) => {
-      return `Get completed todos`
+    getCompletedTodos: () => {
+      return todos.filter(t => {
+        if (t.completed) {
+          return t
+        }
+      })
     }
   },
   Mutation: {
