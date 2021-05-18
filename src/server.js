@@ -1,4 +1,4 @@
-const { ApolloServer } = require('apollo-server')
+const { ApolloServer, PubSub } = require('apollo-server')
 const fs = require('fs')
 const path = require('path')
 
@@ -19,6 +19,8 @@ const todos = [
 
 let todoCount = todos.length
 
+const pubsub = new PubSub();
+
 const resolvers = {
   Query: {
     getAllTodos: () => {
@@ -36,22 +38,37 @@ const resolvers = {
     }
   },
   Mutation: {
-    addTodo: (parent, args) => {
-      const date = args.date || Date.now()
+    addTodo: (_, args) => {
+
+      const date = args.date ? new Date(args.date) : Date.now()
+
       const todo = {
         id: todoCount++,
         name: args.name,
-        date: new Date(date).toDateString(),
+        date: date.toDateString(),
         completed: 0
       }
+
       todos.push(todo)
+      // publish subscription
+      pubsub.publish('NEW_TODO', { newTodo: todo })
+
       return todo
     },
-    completeTodo: (parent, {id}) => {
+    completeTodo: (_, {id}) => {
       // toggles opposite boolean status of completed
       todos[id].completed = !todos[id].completed
+
+      // publish subscription
+      pubsub.publish('COMPLETED_TODO', { todoCompleted: todos[id] })
       return todos[id]
     }
+  },
+  Subscription: {
+    newTodo: {
+      subscribe: () => pubsub.asyncIterator('NEW_TODO') },
+    todoCompleted: {
+      subscribe: () => pubsub.asyncIterator('COMPLETED_TODO') },
   }
 }
 

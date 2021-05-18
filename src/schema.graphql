@@ -15,3 +15,8 @@ type Mutation {
     addTodo(name: String!, date: String): Todo!
     completeTodo(id: Int!): Todo!
 }
+
+type Subscription {
+    newTodo: Todo!
+    todoCompleted: Todo!
+}

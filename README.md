@@ -3,16 +3,16 @@ Repo for FEW2.9 GraphQL Final
 
 ## GraphQL Queries
 ### get all todos
-    ```graphql
-    query getAll {
+  ```graphql
+  query getAll {
     getAllTodos {
         name
         date
         id
         completed
     }
-    }
-    ```
+  }
+  ```
 
 ### Get All Completed Todos
 ```graphql
